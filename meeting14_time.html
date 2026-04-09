@@ -10,18 +10,6 @@ body {
     margin: 30px;
 }
 
-/* Watermark */
-.watermark {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.06;
-    z-index: 1000;
-    pointer-events: none;
-}
-.watermark img { width: 650px; }
-
 /* Header */
 .header {
     background: linear-gradient(90deg, #d4af37, #f3e2a9, #d4af37);
@@ -32,15 +20,6 @@ body {
     border-radius: 8px;
     margin-bottom: 25px;
 }
-.logo { height: 45px; vertical-align: middle; margin-right: 10px; }
-
-/* Race title */
-.race-title {
-    background: #e6e6e6;
-    padding: 6px;
-    font-weight: bold;
-    margin-top: 15px;
-}
 
 /* Table */
 table {
@@ -48,7 +27,6 @@ table {
     width: 100%;
     background: white;
     margin-bottom: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 th {
     background: #1f2a44;
@@ -66,7 +44,6 @@ td {
 .latest { background: #e6e6e6; font-weight: bold; }
 
 .fav {
-    border-left: 6px solid #d4af37;
     background: #fff8dc;
     font-weight: bold;
 }
@@ -77,54 +54,28 @@ td {
     font-weight: bold;
 }
 
-/* Odds grid */
-.odds-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    font-size: 12px;
-}
-.time {
-    color: #666;
+/* Odds */
+.evo-time {
     font-size: 10px;
+    color: #666;
 }
+.evo-odd {
+    font-size: 13px;
+}
+
 .up { color: red; font-weight: bold; }
 .down { color: green; font-weight: bold; }
-
-/* Footer */
-.footer {
-    margin-top: 30px;
-    padding: 14px;
-    text-align: center;
-    font-size: 14px;
-    background: linear-gradient(to right, #1f2a44, #2e3b5c);
-    color: white;
-    border-radius: 8px;
-}
-.footer a {
-    text-decoration: none;
-    font-weight: bold;
-    background: #d4af37;
-    color: black;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin-left: 5px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="watermark">
-    <img src="zot_logo.png">
-</div>
-
 <div class="header">
-    <img src="zot_logo.png" class="logo">
-    MEETING 14 ODDS EVOLUTION – ZOT TURF
+MEETING 14 ODDS EVOLUTION – ZOT TURF
 </div>
 
 <!-- ================= RACE 1 ================= -->
-<div class="race-title">RACE 1</div>
+<h3>RACE 1</h3>
 <table>
 <tr>
 <th>No</th><th>Silk</th><th>Horse</th><th>Jockey</th><th>Trainer</th>
@@ -141,24 +92,12 @@ td {
 <td>3</td>
 <td></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>3000</div>
-<div class="up">3300 ↑</div>
-<div class="up">3500 ↑</div>
-<div class="down">3000 ↓</div>
-<div class="down">2500 ↓</div>
-<div class="up">3000 ↑</div>
-<div class="down">2800 ↓</div>
-<div class="up">3500 ↑</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+3000 → <span class="up">3300 ↑</span> → <span class="up">3500 ↑</span> → 
+<span class="down">3000 ↓</span> → <span class="down">2500 ↓</span> → 
+<span class="up">3000 ↑</span> → <span class="down">2800 ↓</span> → 
+<span class="up">3500 ↑</span>
 </div>
 </td>
 <td class="latest">3500</td>
@@ -166,32 +105,19 @@ td {
 
 <tr>
 <td>2</td>
-<td class="silk"><img src="silks/pfk1.png"></td>
+<td class="silk"><img src="silks/pfk2.png"></td>
 <td class="horse">FENCING CAPTAIN</td>
-<td>F.DETTORIE</td>
+<td>F.DETTORI</td>
 <td>A.OBRIEN</td>
 <td>57KG</td>
 <td>4</td>
 <td><span class="tick">✔✔</span></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>170</div>
-<div>170</div>
-<div class="up">185 ↑</div>
-<div class="up">215 ↑</div>
-<div class="up">235 ↑</div>
-<div class="up">250 ↑</div>
-<div>250</div>
-<div class="up">300 ↑</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+170 → 170 → <span class="up">185 ↑</span> → <span class="up">215 ↑</span> → 
+<span class="up">235 ↑</span> → <span class="up">250 ↑</span> → 
+250 → <span class="up">300 ↑</span>
 </div>
 </td>
 <td class="latest">300</td>
@@ -207,24 +133,12 @@ td {
 <td>2</td>
 <td><span class="tick">✔✔✔✔</span></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>220</div>
-<div class="down">200 ↓</div>
-<div class="down">195 ↓</div>
-<div class="down">180 ↓</div>
-<div class="down">175 ↓</div>
-<div class="down">150 ↓</div>
-<div>150</div>
-<div class="down">140 ↓</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+220 → <span class="down">200 ↓</span> → <span class="down">195 ↓</span> → 
+<span class="down">180 ↓</span> → <span class="down">175 ↓</span> → 
+<span class="down">150 ↓</span> → 150 → 
+<span class="down">140 ↓</span>
 </div>
 </td>
 <td class="latest">140</td>
@@ -240,24 +154,12 @@ td {
 <td>1</td>
 <td></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>820</div>
-<div class="up">1100 ↑</div>
-<div class="down">1000 ↓</div>
-<div class="down">850 ↓</div>
-<div class="down">700 ↓</div>
-<div class="up">800 ↑</div>
-<div class="up">900 ↑</div>
-<div class="up">950 ↑</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+820 → <span class="up">1100 ↑</span> → <span class="down">1000 ↓</span> → 
+<span class="down">850 ↓</span> → <span class="down">700 ↓</span> → 
+<span class="up">800 ↑</span> → <span class="up">900 ↑</span> → 
+<span class="up">950 ↑</span>
 </div>
 </td>
 <td class="latest">950</td>
@@ -266,7 +168,7 @@ td {
 </table>
 
 <!-- ================= RACE 2 ================= -->
-<div class="race-title">RACE 2</div>
+<h3>RACE 2</h3>
 <table>
 <tr>
 <th>No</th><th>Silk</th><th>Horse</th><th>Jockey</th><th>Trainer</th>
@@ -275,7 +177,7 @@ td {
 
 <tr class="fav">
 <td>1</td>
-<td class="silk"><img src="silks/pfk1.png"></td>
+<td class="silk"><img src="silks/guja1.png"></td>
 <td class="horse">CRESCENT ★</td>
 <td>I.SANTANA</td>
 <td>J.GOSDEN</td>
@@ -283,24 +185,11 @@ td {
 <td>3</td>
 <td><span class="tick">✔✔✔✔</span></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>125</div>
-<div class="down">120 ↓</div>
-<div class="down">115 ↓</div>
-<div>115</div>
-<div>115</div>
-<div>115</div>
-<div>115</div>
-<div class="down">110 ↓</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+125 → <span class="down">120 ↓</span> → <span class="down">115 ↓</span> → 
+115 → 115 → 115 → 115 → 
+<span class="down">110 ↓</span>
 </div>
 </td>
 <td class="latest">110</td>
@@ -308,32 +197,20 @@ td {
 
 <tr>
 <td>2</td>
-<td class="silk"><img src="silks/pfk1.png"></td>
+<td class="silk"><img src="silks/daby1.png"></td>
 <td class="horse">LLOYD WRIGHT</td>
-<td>F.DETTORIE</td>
+<td>F.DETTORI</td>
 <td>A.OBRIEN</td>
 <td>57KG</td>
 <td>4</td>
 <td></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>410</div>
-<div class="up">450 ↑</div>
-<div class="up">570 ↑</div>
-<div class="up">600 ↑</div>
-<div class="up">970 ↑</div>
-<div class="up">1000 ↑</div>
-<div>1000</div>
-<div class="up">1200 ↑</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+410 → <span class="up">450 ↑</span> → <span class="up">570 ↑</span> → 
+<span class="up">600 ↑</span> → <span class="up">970 ↑</span> → 
+<span class="up">1000 ↑</span> → 1000 → 
+<span class="up">1200 ↑</span>
 </div>
 </td>
 <td class="latest">1200</td>
@@ -341,7 +218,7 @@ td {
 
 <tr>
 <td>3</td>
-<td class="silk"><img src="silks/ruhee1.png"></td>
+<td class="silk"><img src="silks/samraj1.png"></td>
 <td class="horse">FINE ONE</td>
 <td>R.MOORE</td>
 <td>J.SNAITH</td>
@@ -349,24 +226,12 @@ td {
 <td>2</td>
 <td><span class="tick">✔</span></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>800</div>
-<div class="up">900 ↑</div>
-<div class="up">1200 ↑</div>
-<div class="up">1250 ↑</div>
-<div class="up">1300 ↑</div>
-<div class="up">1400 ↑</div>
-<div>1400</div>
-<div class="up">1500 ↑</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+800 → <span class="up">900 ↑</span> → <span class="up">1200 ↑</span> → 
+<span class="up">1250 ↑</span> → <span class="up">1300 ↑</span> → 
+<span class="up">1400 ↑</span> → 1400 → 
+<span class="up">1500 ↑</span>
 </div>
 </td>
 <td class="latest">1500</td>
@@ -374,7 +239,7 @@ td {
 
 <tr>
 <td>4</td>
-<td class="silk"><img src="silks/narang1.png"></td>
+<td class="silk"><img src="silks/damree1.png"></td>
 <td class="horse">EMERALD BAND</td>
 <td>O.MURPHY</td>
 <td>D.KANNEMEYER</td>
@@ -382,37 +247,18 @@ td {
 <td>1</td>
 <td></td>
 <td>
-<div class="odds-grid">
-<div class="time">Thu 15:00</div>
-<div class="time">Thu 17:00</div>
-<div class="time">Fri 10:00</div>
-<div class="time">Fri 13:00</div>
-<div class="time">Fri 15:00</div>
-<div class="time">Fri 17:00</div>
-<div class="time">Sat 09:00</div>
-<div class="time">Sat 11:00</div>
-
-<div>4000</div>
-<div class="up">5000 ↑</div>
-<div class="down">3300 ↓</div>
-<div class="up">7000 ↑</div>
-<div class="down">5000 ↓</div>
-<div class="up">8000 ↑</div>
-<div class="up">10000 ↑</div>
-<div>10000</div>
+<div class="evo-time">Thu 15:00 | Thu 17:00 | Fri 10:00 | Fri 13:00 | Fri 15:00 | Fri 17:00 | Sat 09:00 | Sat 11:00</div>
+<div class="evo-odd">
+4000 → <span class="up">5000 ↑</span> → <span class="down">3300 ↓</span> → 
+<span class="up">7000 ↑</span> → <span class="down">5000 ↓</span> → 
+<span class="up">8000 ↑</span> → <span class="up">10000 ↑</span> → 
+10000
 </div>
 </td>
 <td class="latest">10000</td>
 </tr>
 
 </table>
-
-<div class="footer">
-Download our free digital magazine 
-<a href="https://www.zotturf.com/2025/12/19/le-numero-364-de-zot-turf/" target="_blank">
-here
-</a>
-</div>
 
 </body>
 </html>
