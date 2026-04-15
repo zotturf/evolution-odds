@@ -147,11 +147,13 @@ fetch(sheetURL)
 .then(res => res.text())
 .then(csv => {
 
-  const rows = csv.split("\n").slice(1).filter(r => r.trim() !== "");
+  const rows = csv.split("\n")
+  .slice(1)
+  .filter(r => r.trim() !== "" && !r.startsWith("Race"));
   const races = {};
 
   rows.forEach(row => {
-    const cols = row.split(",");
+    const cols = row.replace(/\r/g, "").split(",");
 // ✅ skip unwanted rows
   if (cols[0] === "Race" || cols[0] === "MEETING 14") return;
     const race = cols[0];
@@ -194,7 +196,9 @@ fetch(sheetURL)
       html += `
       <tr class="${isFav ? 'fav' : ''}">
         <td>${h.no}</td>
-        <td class="silk"><img src="silks/${h.silk}"></td>
+        <td class="silk">
+  <img src="silks/${h.silk}" onerror="this.style.display='none'">
+</td>
         <td class="horse">${h.horse} ${isFav ? '★' : ''}</td>
         <td>${h.jockey}</td>
         <td>${h.trainer}</td>
