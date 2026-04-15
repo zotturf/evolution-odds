@@ -147,12 +147,13 @@ fetch(sheetURL)
 .then(res => res.text())
 .then(csv => {
 
-  const rows = csv.split("\n").slice(1);
+  const rows = csv.split("\n").slice(1).filter(r => r.trim() !== "");
   const races = {};
 
   rows.forEach(row => {
     const cols = row.split(",");
-
+// ✅ skip unwanted rows
+  if (cols[0] === "Race" || cols[0] === "MEETING 14") return;
     const race = cols[0];
     if(!races[race]) races[race] = [];
 
