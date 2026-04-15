@@ -149,7 +149,16 @@ fetch(sheetURL)
 
   const rows = csv.split("\n")
   .slice(1)
-  .filter(r => r.trim() !== "" && !r.startsWith("Race"));
+  .map(r => r.replace(/\r/g, "").trim())
+  .filter(r => {
+    const first = r.split(",")[0];
+    return (
+      r !== "" &&
+      first !== "Race" &&
+      first !== "MEETING 14" &&
+      !isNaN(first)   // ✅ ONLY keep numeric race rows
+    );
+  });
   const races = {};
 
   rows.forEach(row => {
