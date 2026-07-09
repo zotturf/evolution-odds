@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Meeting 1 2026 Odds Evolution</title>
+
+<style>
+body {
+    font-family: Verdana, Arial, sans-serif;
+    background: #f2f4f7;
+    margin: 30px;
+}
+
+/* Watermark */
+.watermark {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Top watermark */
+.wm1 {
+    top: 300px;
+}
+
+/* Middle watermark */
+.wm2 {
+    top: 1200px;
+}
+
+/* Bottom watermark */
+.wm3 {
+    top: 2200px;
+}
+
+/* Bottom watermark */
+.wm4 {
+    top: 3400px;
+}
+
+.watermark img { width: 650px; }
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.header img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.header-title {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Race title */
+.race-title {
+    background: #e6e6e6;
+    padding: 6px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+th {
+    background: #800020;
+    color: #d4af37;
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.horse { text-align: center; font-weight: bold; }
+.silk img { height: 40px; }
+
+.fav {
+    border-left: 6px solid #d4af37;
+    background: #fff8dc;
+    font-weight: bold;
+}
+
+/* Odds grid */
+.odds-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 12px;
+}
+.time {
+    color: #666;
+    font-size: 10px;
+}
+.up { color: red; font-weight: bold; }
+.down { color: green; font-weight: bold; }
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    padding: 14px;
+    text-align: center;
+    font-size: 14px;
+    background: #800020;
+    color: #d4af37;
+    border-radius: 8px;
+}
+.footer a {
+    text-decoration: none;
+    font-weight: bold;
+    background: #d4af37;
+    color: #800020;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="watermark wm1">
+    <img src="zot_logo.png">
+</div>
+
+<div class="watermark wm2">
+    <img src="zot_logo.png">
+</div>
+
+<div class="watermark wm3">
+    <img src="zot_logo.png">
+</div>
+
+<div class="watermark wm4">
+    <img src="zot_logo.png">
+</div>
+
+
+<div class="header">
+    <img src="header.png">
+    <div class="header-title">
+        Odds Evolution for Meeting 1 - Season 2026
+    </div>
+</div>
+
+<!-- ALL RACES WILL BE GENERATED HERE -->
+<div id="races-container"></div>
+
+<div class="footer">
+Download our free digital magazine 
+<a href="https://www.zotturf.com/2026/04/23/le-numero-365-de-zot-turf/" target="_blank">
+here
+</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const SHEET_URL = "https://opensheet.elk.sh/1vZ0GPd0L28qgLzigSlTgEXaHQb-3IuqefAcHEFrJnfk/Sheet1";
+
+fetch(SHEET_URL)
+.then(res => res.json())
+.then(data => {
+
+    let races = {};
+
+    data.forEach(row => {
+        if(!races[row.Race]){
+            races[row.Race] = [];
+        }
+        races[row.Race].push(row);
+    });
+
+    function formatOdds(current, previous){
+
+
+
+    // ❗ Handle empty current value
+    if(current === "" || current === null || current === undefined){
+        return `<div></div>`;
+    }
+
+    // Keep raw values for checking
+    let curr = Number(current);
+    let prev = Number(previous);
+
+    // ❗ If previous is missing → no arrow
+    if(previous === "" || previous === null || previous === undefined){
+        return `<div>${curr}</div>`;
+    }
+
+    // ❗ If conversion failed → avoid NaN
+    if(isNaN(curr)) return `<div></div>`;
+    if(isNaN(prev)) return `<div>${curr}</div>`;
+
+    if(curr > prev) return `<div class="up">${curr} ↑</div>`;
+    if(curr < prev) return `<div class="down">${curr} ↓</div>`;
+    return `<div>${curr}</div>`;
+}
+
+// ================= GET LATEST ODDS =================
+function getLatestOdds(row){
+
+    let values = [
+        row.Sat10,
+        row.Fri17,
+        row.Fri14,
+        row.Fri12,
+        row.Fri10,
+        row.Thu17,
+        row.Thu15
+    ];
+
+    for(let val of values){
+        if(val !== "" && val !== null && val !== undefined){
+            let num = Number(val);
+            if(!isNaN(num)) return num;
+        }
+    }
+
+    return 999999; // fallback
+}
+
+    let container = document.getElementById("races-container");
+
+    if (!container) {
+        console.error("Container not found");
+        return;
+    }
+
+    container.innerHTML = ""; // ✅ IMPORTANT FIX
+
+    Object.keys(races).sort((a,b)=>a-b).forEach(raceNumber => {
+
+        let raceData = races[raceNumber];
+        let info = raceData[0];
+        let minOdds = Math.min(...raceData.map(r => getLatestOdds(r)));
+
+        let html = `
+<div class="race-title">
+    RACE ${raceNumber} - ${info.Time} ${info.RaceName}
+</div>
+
+<table>
+<thead>
+<tr>
+<th>No</th><th>Silk</th><th>Horse</th><th>Jockey</th><th>Trainer</th>
+<th>Weight</th><th>Draw</th><th>Odds Evolution</th>
+</tr>
+</thead>
+<tbody>
+`;
+
+        raceData.forEach(row => {
+
+            let oddsHTML = `
+            <div class="time">Thu 15:00</div>
+            <div class="time">Thu 17:00</div>
+            <div class="time">Fri 10:00</div>
+            <div class="time">Fri 12:00</div>
+            <div class="time">Fri 14:00</div>
+            <div class="time">Fri 17:00</div>
+            <div class="time">Sat 10:00</div>
+
+            <div>${row.Thu15 || ""}</div>
+            ${formatOdds(row.Thu17, row.Thu15)}
+            ${formatOdds(row.Fri10, row.Thu17)}
+            ${formatOdds(row.Fri12, row.Fri10)}
+            ${formatOdds(row.Fri14, row.Fri12)}
+            ${formatOdds(row.Fri17, row.Fri14)}
+            ${formatOdds(row.Sat10, row.Fri17)}
+            `;
+
+            let currentOdds = getLatestOdds(row);
+            let favClass = currentOdds === minOdds ? "fav" : "";
+
+            html += `
+            <tr class="${favClass}">
+                <td>${row.No}</td>
+                <td class="silk">
+                    <img src="silks/${row.Silk}" onerror="this.style.display='none'">
+                </td>
+                <td class="horse">${row.Horse} ${currentOdds === minOdds ? "★" : ""}</td>
+                <td>${row.Jockey}</td>
+                <td>${row.Trainer}</td>
+                <td>${row.Weight}</td>
+                <td>${row.Draw}</td>
+                <td class="odds-grid">${oddsHTML}</td>
+            </tr>
+            `;
+        });
+
+        html += `</tbody></table>`;
+
+        container.innerHTML += html;
+    });
+
+})
+.catch(err => console.error("Fetch error:", err));
+
+});
+</script>
+
+</body>
+</html>
